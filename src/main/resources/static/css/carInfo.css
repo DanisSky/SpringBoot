@@ -1,0 +1,42 @@
+body {
+    background-image: url(https://subtlepatterns.com/patterns/kindajean.png);
+    font-family: 'Open Sans', sans-serif;
+}
+.comment {
+    display: flex;
+    margin-bottom: 2rem;
+    padding: 20px;
+    flex-direction: column;
+    background: rgb(211, 209, 209);
+    border-radius: 30px;
+}
+.comments {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.line {
+    display: block;
+    margin: auto;
+    height: 5px;
+    width: 80%;
+    background-color: lightgray;
+}
+.car__about {
+    margin-top: 3rem;
+    padding: 0 5rem;
+    font-size: 1rem;
+}
+.car__title h1 {
+    font-weight: 200;
+    font-size: 4.5rem;
+}
+.car__image img {
+    border: 3px solid rgb(211, 209, 209);
+    border-radius: 20px;
+    width: 500px;
+}
+a,
+a:hover {
+    text-decoration: none;
+}
