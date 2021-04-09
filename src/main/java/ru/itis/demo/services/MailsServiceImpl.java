@@ -1,7 +1,6 @@
 package ru.itis.demo.services;
 
 import freemarker.template.*;
-import freemarker.template.TemplateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassRelativeResourceLoader;
@@ -10,17 +9,23 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.freemarker.SpringTemplateLoader;
+import ru.itis.demo.models.Account;
+import ru.itis.demo.repositories.AccountsRepository;
 
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @Component
 public class MailsServiceImpl implements MailsService {
 
     @Autowired
     private JavaMailSender javaMailSender;
+
+    @Autowired
+    private AccountsRepository accountsRepository;
 
     @Value("${spring.mail.username}")
     private String mailFrom;
@@ -41,16 +46,24 @@ public class MailsServiceImpl implements MailsService {
         }
     }
 
-
     @Override
     public void sendEmailForConfirm(String email, String code) {
         String mailText = getEmailText(code);
-
         MimeMessagePreparator messagePreparator = getEmail(email, mailText);
-
         javaMailSender.send(messagePreparator);
-
     }
+
+    @Override
+    public Boolean isConfirmed(String code) {
+        Optional<Account> user = accountsRepository.findByConfirmCode(code);
+        if (user.isPresent()) {
+            user.get().setConfirmCode(code);
+            accountsRepository.save(user.get());
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+
 
     private MimeMessagePreparator getEmail(String email, String mailText) {
         return mimeMessage -> {

@@ -1,7 +1,21 @@
-POST http://localhost:8080/carInfo/
+POST http://localhost:8080/products/
 Content-Type: application/json
 
 {
-"id": "1",
-"text": "sometext"
+  "name": "apple",
+  "price": "1.23",
+  "category": "name"
 }
+
+###
+GET http://localhost:8080/products/
+
+###
+POST http://localhost:8080/category/
+Content-Type: application/json
+
+{
+  "name": "aa"
+}
+###
+DELETE http://localhost:8080/category/1

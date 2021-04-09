@@ -6,23 +6,22 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
-@Table(name = "car")
-public class Car {
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String mark;
-    private String model;
-    private Double price;
-    private String description;
-    private Long mileage;
-    private Long markId;
-    private Long fileId;
+    private String name;
+    private Boolean isDeleted;
+
+    @OneToMany(mappedBy = "category")
+    private List<Product> products;
+
 }

@@ -6,25 +6,30 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
+
 @Data
-@Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
-@Table(name = "account")
-public class User {
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String firstName;
-    private String lastName;
-    private String phone;
     private String email;
     private String password;
+    private String phone;
+
 
     @Enumerated(value = EnumType.STRING)
     private State state;
 
     private String confirmCode;
+    private Role role;
+
+
+    @OneToMany(mappedBy = "account")
+    private List<ProductReview> productReview;
 }
