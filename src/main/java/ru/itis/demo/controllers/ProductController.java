@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.demo.dto.ProductDto;
+import ru.itis.demo.dto.ProductsPage;
 import ru.itis.demo.services.ProductService;
 
 import java.util.List;
@@ -17,6 +18,15 @@ public class ProductController {
 
     @Autowired
     private ProductService productService;
+
+    @GetMapping("/search")
+    public ResponseEntity<ProductsPage> search(@RequestParam("size") Integer size,
+                                               @RequestParam("page") Integer page,
+                                               @RequestParam(value = "q", required = false) String query,
+                                               @RequestParam(value = "sort", required = false) String sort,
+                                               @RequestParam(value = "direction", required = false) String direction) {
+        return ResponseEntity.ok(productService.search(size, page, query, sort, direction));
+    }
 
     @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/")

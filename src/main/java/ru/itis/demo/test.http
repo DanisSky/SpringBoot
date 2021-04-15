@@ -19,3 +19,6 @@ Content-Type: application/json
 }
 ###
 DELETE http://localhost:8080/category/1
+
+###
+GET http://localhost:8080/products/search?page=0&size=6&q=&sort=description&direction=DESC

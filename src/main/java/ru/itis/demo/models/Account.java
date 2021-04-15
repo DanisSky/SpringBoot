@@ -19,16 +19,19 @@ public class Account {
     private Long id;
 
     private String email;
-    private String password;
+    private String hashPassword;
     private String phone;
 
+    private String confirmCode;
 
     @Enumerated(value = EnumType.STRING)
     private State state;
 
-    private String confirmCode;
+    @Enumerated(value = EnumType.STRING)
     private Role role;
 
+    @OneToOne(mappedBy = "account")
+    private Cart cart;
 
     @OneToMany(mappedBy = "account")
     private List<ProductReview> productReview;

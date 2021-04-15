@@ -27,6 +27,7 @@ public class ProductDto {
 
     private List<String> productReviews;
 
+
     public static ProductDto from(Product product) {
         ProductDto result = ProductDto.builder()
                 .id(product.getId())
