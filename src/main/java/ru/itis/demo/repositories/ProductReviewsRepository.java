@@ -5,7 +5,7 @@ import ru.itis.demo.models.ProductReview;
 
 import java.util.List;
 
-public interface ProductReviewRepository extends JpaRepository<ProductReview, Long> {
+public interface ProductReviewsRepository extends JpaRepository<ProductReview, Long> {
     List<ProductReview> findAllByProductIdAndIsDeletedIsNull(Long productId);
     List<ProductReview> findAllByAccountIdAndIsDeletedIsNull(Long accountId);
 }

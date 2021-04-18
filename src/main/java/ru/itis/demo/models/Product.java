@@ -1,9 +1,6 @@
 package ru.itis.demo.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -13,6 +10,8 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@EqualsAndHashCode(exclude = {"carts", "category","productReviews"})
+@ToString(exclude = {"carts", "category", "productReviews"})
 @Entity
 public class Product {
     @Id
@@ -33,8 +32,8 @@ public class Product {
 
     @ManyToMany
     @JoinTable(name = "product_cart",
-            joinColumns = @JoinColumn(name = "cart_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "product_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "cart_id", referencedColumnName = "id"))
     private List<Cart> carts;
 
 

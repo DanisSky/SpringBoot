@@ -4,6 +4,7 @@ import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ClassRelativeResourceLoader;
@@ -13,6 +14,7 @@ import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.freemarker.SpringTemplateLoader;
 import ru.itis.demo.models.Account;
+import ru.itis.demo.models.State;
 import ru.itis.demo.repositories.AccountsRepository;
 
 import java.io.IOException;
@@ -21,6 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 
+@Slf4j
 @Component
 public class MailsServiceImpl implements MailsService {
 
@@ -60,7 +63,7 @@ public class MailsServiceImpl implements MailsService {
     public Boolean isConfirmed(String code) {
         Optional<Account> user = accountsRepository.findByConfirmCode(code);
         if (user.isPresent()) {
-            user.get().setConfirmCode(code);
+            user.get().setState(State.CONFIRMED);
             accountsRepository.save(user.get());
             return Boolean.TRUE;
         }
