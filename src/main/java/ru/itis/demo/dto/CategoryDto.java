@@ -18,7 +18,7 @@ public class CategoryDto {
     private Long id;
     private String name;
 
-    private List<String> products;
+    private List<Long> products;
 
     public static CategoryDto from(Category category) {
         CategoryDto result = CategoryDto.builder()
@@ -27,7 +27,7 @@ public class CategoryDto {
                 .build();
 
         if (category.getProducts() != null) {
-            result.setProducts(category.getProducts().stream().map(Product::getName).collect(Collectors.toList()));
+            result.setProducts(category.getProducts().stream().map(Product::getId).collect(Collectors.toList()));
         }
         return result;
     }

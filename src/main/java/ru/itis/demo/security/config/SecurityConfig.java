@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -23,15 +24,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
+        http.cors().disable();
         http.authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .and()
-                .formLogin() // описываем страницу входа
-                .loginPage("/signIn") //наша страница входа расположена по указанному адресу
-                .usernameParameter("email")// в качестве имени пользователя с этой страницы уходит email
-                .defaultSuccessUrl("/profile") // после успешного входа пользователь должен перейти на указанный url
-                .failureUrl("/signIn?error"); // если была ошибка, то на указанный url
 
+//                .antMatchers("/account/profile").authenticated()
+//                .antMatchers("/signUp").permitAll()
+//                .antMatchers("/files/**").authenticated()
+//                .and()
+//                .formLogin() // описываем страницу входа
+//                .loginPage("/signIn") //наша страница входа расположена по указанному адресу
+//                .usernameParameter("email")// в качестве имени пользователя с этой страницы уходит email
+//                .defaultSuccessUrl("/account/profile") // после успешного входа пользователь должен перейти на указанный url
+//                .failureUrl("/signIn?error") // если была ошибка, то на указанный url
+//                .and()
+//                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/signIn");
+        .antMatchers("/**").permitAll();
     }
 
     @Override

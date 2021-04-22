@@ -13,6 +13,7 @@ import ru.itis.demo.services.ProductService;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost")
 @RequestMapping("/products")
 public class ProductController {
 
@@ -32,6 +33,11 @@ public class ProductController {
     @GetMapping("/")
     public ResponseEntity<List<ProductDto>> getAllProducts() {
         return ResponseEntity.ok(productService.getAllProducts());
+    }
+
+    @GetMapping("/{product-id}")
+    public ResponseEntity<ProductDto> getProductById(@PathVariable("product-id") Long productId) {
+        return ResponseEntity.ok(productService.getProductById(productId));
     }
 
     @ApiOperation(value = "Добавление продукта")

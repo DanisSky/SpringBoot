@@ -12,13 +12,13 @@ import ru.itis.demo.services.CategoryService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/category")
+@CrossOrigin(origins = "http://localhost")
+@RequestMapping("/categories")
 public class CategoryController {
 
     @Autowired
     private CategoryService categoryService;
 
-    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/")
     public ResponseEntity<List<CategoryDto>> getAllCategories() {
         return ResponseEntity.ok(categoryService.getAllCategories());
