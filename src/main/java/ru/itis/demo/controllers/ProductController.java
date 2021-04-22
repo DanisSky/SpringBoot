@@ -13,7 +13,6 @@ import ru.itis.demo.services.ProductService;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost")
 @RequestMapping("/products")
 public class ProductController {
 
@@ -29,7 +28,6 @@ public class ProductController {
         return ResponseEntity.ok(productService.search(size, page, query, sort, direction));
     }
 
-    @CrossOrigin(origins = "http://localhost:8080")
     @GetMapping("/")
     public ResponseEntity<List<ProductDto>> getAllProducts() {
         return ResponseEntity.ok(productService.getAllProducts());

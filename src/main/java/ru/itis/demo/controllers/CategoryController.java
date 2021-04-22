@@ -12,7 +12,6 @@ import ru.itis.demo.services.CategoryService;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "http://localhost")
 @RequestMapping("/categories")
 public class CategoryController {
 
