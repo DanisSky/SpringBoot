@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import ru.itis.demo.dto.ProductDto;
 import ru.itis.demo.dto.ProductsPage;
+import ru.itis.demo.models.Category;
 import ru.itis.demo.models.Product;
 import ru.itis.demo.repositories.CategoriesRepository;
 import ru.itis.demo.repositories.ProductsRepository;
@@ -59,7 +60,6 @@ public class ProductServiceImpl implements ProductService {
 
     }
 
-
     @Override
     public ProductDto getProductById(Long id) {
         return from(productsRepository.findById(id).orElseThrow(IllegalArgumentException::new));
@@ -101,6 +101,12 @@ public class ProductServiceImpl implements ProductService {
                 .orElseThrow(IllegalArgumentException::new);
         productForDelete.setIsDeleted(true);
         productsRepository.save(productForDelete);
+    }
+
+    @Override
+    public List<ProductDto> getAllProductsByCategory(Long id) {
+        Category category = categoryRepository.findById(id).orElseThrow(IllegalArgumentException::new);
+        return from(productsRepository.findByCategory(category));
     }
 
 }

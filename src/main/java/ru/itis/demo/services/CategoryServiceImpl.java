@@ -7,6 +7,7 @@ import ru.itis.demo.models.Category;
 import ru.itis.demo.repositories.CategoriesRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static ru.itis.demo.dto.CategoryDto.from;
 
@@ -18,7 +19,7 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public List<CategoryDto> getAllCategories() {
-        return from(categoriesRepository.findAllByIsDeletedIsNull());
+        return from(categoriesRepository.findAllByIsDeletedIsNull().stream().filter(category -> category.getProducts().size() != 0).collect(Collectors.toList()));
     }
 
     @Override

@@ -25,7 +25,7 @@ public class ProductDto {
     private String pictureUrl;
     private String category;
 
-    private List<String> productReviews;
+    private List<Long> productReviews;
 
 
     public static ProductDto from(Product product) {
@@ -41,7 +41,7 @@ public class ProductDto {
                 .build();
 
         if (product.getProductReviews() != null) {
-            result.setProductReviews(product.getProductReviews().stream().map(ProductReview::getText).collect(Collectors.toList()));
+            result.setProductReviews(product.getProductReviews().stream().map(ProductReview::getId).collect(Collectors.toList()));
         }
         return result;
     }

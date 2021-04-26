@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light px-5">
     <div class="container">
-        <span class="user__nav__brand">MyShop</span>
+        <a id="main-link" href="/products/category"><span class="user__nav__brand">MyShop</span></a>
         <div class="user__nav">
             <div class="user__nav__name">
                 <span>Welcome</span>
@@ -14,4 +14,9 @@
             </div>
         </div>
     </div>
+    <style>
+        #main-link {
+            text-decoration: none;
+        }
+    </style>
 </nav>

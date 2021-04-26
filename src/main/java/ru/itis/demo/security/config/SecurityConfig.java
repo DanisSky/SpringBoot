@@ -27,17 +27,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
 
 //                .antMatchers("/account/profile").authenticated()
-//                .antMatchers("/signUp").permitAll()
-//                .antMatchers("/files/**").authenticated()
-//                .and()
-//                .formLogin() // описываем страницу входа
-//                .loginPage("/signIn") //наша страница входа расположена по указанному адресу
-//                .usernameParameter("email")// в качестве имени пользователя с этой страницы уходит email
-//                .defaultSuccessUrl("/account/profile") // после успешного входа пользователь должен перейти на указанный url
-//                .failureUrl("/signIn?error") // если была ошибка, то на указанный url
-//                .and()
-//                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/signIn");
-        .antMatchers("/**").permitAll();
+                .antMatchers("/signUp").permitAll()
+                .antMatchers("/files/**").permitAll()
+                .antMatchers("/**").permitAll()
+                .and()
+                .formLogin() // описываем страницу входа
+                .loginPage("/signIn") //наша страница входа расположена по указанному адресу
+                .usernameParameter("email")// в качестве имени пользователя с этой страницы уходит email
+                .defaultSuccessUrl("/account/profile") // после успешного входа пользователь должен перейти на указанный url
+                .failureUrl("/signIn?error") // если была ошибка, то на указанный url
+                .and()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/signIn");
     }
 
     @Override
