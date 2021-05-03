@@ -24,7 +24,7 @@ Content-Type: application/json
 DELETE http://localhost:8080/categories/1
 
 ###
-GET http://localhost:8080/products/search?page=0&size=6&q=&sort=description&direction=DESC
+GET http://localhost:8080/products/search?page=0&size=20&q=ball&sort=name&direction=DESC
 
 ###
 GET http://localhost:8080/cart/4

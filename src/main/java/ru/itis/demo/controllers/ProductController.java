@@ -28,6 +28,7 @@ public class ProductController {
     private ProductReviewService productReviewService;
 
     @GetMapping("/search")
+    @ResponseBody
     public ResponseEntity<ProductsPage> search(@RequestParam("size") Integer size,
                                                @RequestParam("page") Integer page,
                                                @RequestParam(value = "q", required = false) String query,
@@ -52,7 +53,7 @@ public class ProductController {
 
     @GetMapping("/{product-id}")
     public String getProductById(@PathVariable("product-id") Long productId, Model model, Principal principal) {
-        model.addAttribute("user", principal.getName());    
+        model.addAttribute("user", principal.getName());
         model.addAttribute("product", productService.getProductById(productId));
         model.addAttribute("category", categoryService.getCategoryByProductId(productId));
         model.addAttribute("reviews", productReviewService.getAllByProductId(productId));
