@@ -14,8 +14,7 @@ import java.util.List;
 public interface ProductsRepository extends JpaRepository<Product, Long> {
     List<Product> findAllByIsDeletedIsNull();
     @Query("select product from Product product where " +
-            "(:q = 'empty' or UPPER(product.description) like UPPER(concat('%', :q, '%')) " +
-            "              or UPPER(product.name) like UPPER(concat('%', :q, '%')))")
+            "(:q = 'empty' or UPPER(product.name) like UPPER(concat('%', :q, '%')))")
     Page<Product> search(@Param("q") String q, Pageable pageable);
 
     List<Product> findByCategory(Category category);
