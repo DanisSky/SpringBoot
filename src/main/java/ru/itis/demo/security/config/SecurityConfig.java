@@ -25,11 +25,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.authorizeRequests()
-
-//                .antMatchers("/account/profile").authenticated()
+                .antMatchers("/account/profile").authenticated()
                 .antMatchers("/signUp").permitAll()
                 .antMatchers("/files/**").permitAll()
-                .antMatchers("/**").permitAll()
+                .antMatchers("/products/**").authenticated()
                 .and()
                 .formLogin() // описываем страницу входа
                 .loginPage("/signIn") //наша страница входа расположена по указанному адресу

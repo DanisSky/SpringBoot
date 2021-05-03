@@ -2,13 +2,14 @@ package ru.itis.demo.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.itis.demo.dto.ProductReviewDto;
 import ru.itis.demo.services.ProductReviewService;
 
 import java.util.List;
 
-@RestController
+@Controller
 @RequestMapping("/reviews")
 public class ProductReviewController {
 
@@ -18,6 +19,11 @@ public class ProductReviewController {
     @GetMapping("/product/{product-id}")
     public ResponseEntity<List<ProductReviewDto>> getAllReviewsByProductId(@PathVariable("product-id") Long productId) {
         return ResponseEntity.ok(productReviewService.getAllByProductId(productId));
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<List<ProductReviewDto>> addReview(@RequestBody ProductReviewDto review) {
+        return ResponseEntity.ok(productReviewService.addReview(review));
     }
 
     @GetMapping("/account/{account-id}")

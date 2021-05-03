@@ -19,6 +19,7 @@ public class ProductReviewDto {
     private String text;
     private Integer stars;
     private Date added;
+    private Long productId;
 
     private String accountEmail;
 
@@ -29,6 +30,7 @@ public class ProductReviewDto {
                 .text(productReview.getText())
                 .stars(productReview.getStars())
                 .added(productReview.getAdded())
+                .productId(productReview.getProduct().getId())
                 .build();
 
         return result;

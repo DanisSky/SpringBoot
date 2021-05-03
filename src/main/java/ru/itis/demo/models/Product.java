@@ -17,9 +17,11 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
+
+    @Column(length = 300)
     private String description;
+
     private Double price;
     private Date created;
     private Date updated;

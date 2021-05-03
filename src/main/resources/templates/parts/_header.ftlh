@@ -15,3 +15,4 @@
             rel="stylesheet"
     />
 </head>
+<#setting url_escaping_charset="UTF-8">

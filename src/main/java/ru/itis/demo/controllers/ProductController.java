@@ -9,7 +9,10 @@ import ru.itis.demo.dto.CategoryDto;
 import ru.itis.demo.dto.ProductDto;
 import ru.itis.demo.dto.ProductsPage;
 import ru.itis.demo.services.CategoryService;
+import ru.itis.demo.services.ProductReviewService;
 import ru.itis.demo.services.ProductService;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/products")
@@ -20,6 +23,9 @@ public class ProductController {
 
     @Autowired
     private CategoryService categoryService;
+
+    @Autowired
+    private ProductReviewService productReviewService;
 
     @GetMapping("/search")
     public ResponseEntity<ProductsPage> search(@RequestParam("size") Integer size,
@@ -45,9 +51,12 @@ public class ProductController {
     }
 
     @GetMapping("/{product-id}")
-    @ResponseBody
-    public ResponseEntity<ProductDto> getProductById(@PathVariable("product-id") Long productId) {
-        return ResponseEntity.ok(productService.getProductById(productId));
+    public String getProductById(@PathVariable("product-id") Long productId, Model model, Principal principal) {
+        model.addAttribute("user", principal.getName());    
+        model.addAttribute("product", productService.getProductById(productId));
+        model.addAttribute("category", categoryService.getCategoryByProductId(productId));
+        model.addAttribute("reviews", productReviewService.getAllByProductId(productId));
+        return "product_detail_page";
     }
 
     @PostMapping("/")

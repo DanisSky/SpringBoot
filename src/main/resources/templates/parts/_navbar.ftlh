@@ -1,6 +1,6 @@
 <nav class="navbar navbar-light px-5">
     <div class="container">
-        <a id="main-link" href="/products/category"><span class="user__nav__brand">MyShop</span></a>
+        <a id="main-link" href="/products/"><span class="user__nav__brand">MyShop</span></a>
         <div class="user__nav">
             <div class="user__nav__name">
                 <span>Welcome</span>
