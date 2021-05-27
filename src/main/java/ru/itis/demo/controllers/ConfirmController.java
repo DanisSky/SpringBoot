@@ -18,6 +18,6 @@ public class ConfirmController {
         if (isConfirmed) {
             return "confirmed_mail";
         }
-        return "404_page";
+        return "error_page";
     }
 }

@@ -5,7 +5,7 @@
       <div class="content container">
         <div class="notfound">
             <div class="block">
-                <div class="hit-the-floor">404</div>
+                <div class="hit-the-floor">${error_number}</div>
                 <p>Произошла ошибочка</p>
             </div>
         </div>
