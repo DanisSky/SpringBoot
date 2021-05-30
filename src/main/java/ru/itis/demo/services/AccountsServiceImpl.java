@@ -36,4 +36,9 @@ public class AccountsServiceImpl implements AccountsService {
         accountsRepository.save(account);
         return AccountDto.from(account);
     }
+
+    @Override
+    public AccountDto getAccountByEmail(String email) {
+        return from(accountsRepository.findByEmail(email).orElseThrow(IllegalArgumentException::new));
+    }
 }

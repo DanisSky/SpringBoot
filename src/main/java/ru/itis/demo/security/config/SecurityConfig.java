@@ -27,9 +27,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/account/profile").authenticated()
                 .antMatchers("/signUp").permitAll()
-                .antMatchers("/files/**").permitAll()
+                .antMatchers("/files/**").hasAnyAuthority("ADMIN")
                 .antMatchers("/products/**").authenticated()
                 .antMatchers("/admin/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/cart/**").authenticated()
                 .and()
                 .formLogin() // описываем страницу входа
                 .loginPage("/signIn") //наша страница входа расположена по указанному адресу

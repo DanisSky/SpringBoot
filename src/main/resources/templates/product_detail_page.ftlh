@@ -19,7 +19,7 @@
                         ${product.description}
                     </p>
                     <div class="form">
-                        <button class="product__detail__btn btn" type="submit">Add to Corzine</button>
+                        <a class="product__detail__btn btn" href="/cart/product/add/${product.id}" type="submit">Add to cart</a>
                     </div>
                 </div>
             </div>

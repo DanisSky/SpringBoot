@@ -14,9 +14,9 @@
                     </form>
 
                     <ul>
-                        <li><a href="/products/">All</a></li>
+                        <li><a style="color: white" href="/products/">All</a></li>
                         <#list categories as category>
-                            <li><a href="/products/?id=${category.id}">${category.name}</a></li>
+                            <li><a style="color: white"  href="/products/?id=${category.id}">${category.name}</a></li>
                         </#list>
                     </ul>
                 </div>

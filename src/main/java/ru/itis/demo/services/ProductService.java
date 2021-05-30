@@ -2,6 +2,7 @@ package ru.itis.demo.services;
 
 import ru.itis.demo.dto.ProductDto;
 import ru.itis.demo.dto.ProductsPage;
+import ru.itis.demo.models.Product;
 
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface ProductService {
     void deleteProduct(Long productId);
 
     List<ProductDto> getAllProductsByCategory(Long id);
+
+    List<ProductDto> getAllProductsByAccountId(Long id);
 }

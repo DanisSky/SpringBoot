@@ -109,4 +109,9 @@ public class ProductServiceImpl implements ProductService {
         return from(productsRepository.findByCategory(category));
     }
 
+    @Override
+    public List<ProductDto> getAllProductsByAccountId(Long id) {
+        return from(productsRepository.getAllByAccountId(id));
+    }
+
 }
