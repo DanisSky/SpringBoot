@@ -84,7 +84,6 @@
             data: JSON.stringify(data),
             success: (response) => {
                 console.log(response);
-                renderTable(response);
             },
             dataType: "json",
             contentType: "application/json"
